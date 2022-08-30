@@ -1,6 +1,6 @@
 #-----------------------------------------------------------------------------------Section dealing with Tag information
 CREATE_TAG_RAW_TABLE = '''
-                        CREATE TABLE stackoverflow_tags_info (
+                        CREATE TABLE IF NOT EXISTS stackoverflow_tags_info (
                             tag_record_id PRIMARY KEY BIGSERIAL, 
                             tag_name TEXT,
                             tag_count INT,
@@ -17,7 +17,7 @@ INSERT_TAG_RAW = '''
 
 #-----------------------------------------------------------------------------------Section dealing with Answers information
 CREATE_ANSWERS_RAW_TABLE = '''
-                        CREATE TABLE stackoverflow_answers_info (
+                        CREATE TABLE IF NOT EXISTS stackoverflow_answers_info (
                             answer_record_id PRIMARY KEY BIGSERIAL, 
                             answer_id DOUBLE,
                             answer_question_id DOUBLE,
@@ -41,7 +41,7 @@ INSERT_ANSWER_RAW = '''
 
 #-----------------------------------------------------------------------------------Section dealing with Questions information
 CREATE_QUESTIONS_RAW_TABLE = '''
-                        CREATE TABLE stackoverflow_questions_info (
+                        CREATE TABLE IF NOT EXISTS stackoverflow_questions_info (
                             question_record_id PRIMARY KEY BIGSERIAL, 
                             question_id DOUBLE,
                             question_title TEXT,
