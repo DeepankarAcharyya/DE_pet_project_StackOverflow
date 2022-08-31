@@ -18,7 +18,7 @@ def write_to_csv(dict_data_list, outputfile, pageNumber):
    
 
 #the data download function : the function downloads the data from the 
-def scrape_data(section, fromdate):
+def scrape_data(section, fromdate, col_list):
     base_url = "https://api.stackexchange.com/2.3/{section_name}?page={page_count}&pagesize={pagesize_thres}&fromdate={start_date}&todate={end_date}&order=desc&sort=activity&site=stackoverflow"
     pageCount = 0
     pagesize = 20
@@ -45,6 +45,12 @@ def scrape_data(section, fromdate):
             if section in ['questions','answers']:
                 for i in result_items:
                     i['owner'] = i['owner']['user_id']
+
+            for i in result_items:
+                a = set(i.keys()).difference(col_list)
+                if len(a)>0:
+                    for j in list(a):
+                        del i[j]
 
             write_to_csv(result_items, csv_output, pageCount)
 

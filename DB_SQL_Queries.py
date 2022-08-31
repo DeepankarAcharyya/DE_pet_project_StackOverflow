@@ -26,9 +26,9 @@ CREATE_ANSWERS_RAW_TABLE = '''
                             answer_score INT,
                             answer_creation_datetime DATETIME,
                             answer_last_activity_datetime DATETIME,
+                            answer_edit_datetime DATETIME,
                             answer_downvote_count INT,
                             answer_upvote_cout INT,
-                            answer_lock_status BOOLEAN,
                             answer_content_license TEXT,
                             record_date DATE NOT NULL DEFAULT (SELECT CURRENT_DATE - INTEGER '1' )
                         );
