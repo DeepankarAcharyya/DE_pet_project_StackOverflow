@@ -30,7 +30,7 @@ def scrape_data(section, fromdate):
     backoff = 0
     scrapeFlag = True
 
-    csv_output = os.path.join(os.getcwd() , str(fromdate)+'.csv')
+    csv_output = os.path.join(os.getcwd() , str(fromdate)+'_'+section+'.csv')
     
     while scrapeFlag :
         pageCount = pageCount + 1
@@ -40,6 +40,12 @@ def scrape_data(section, fromdate):
             content = response.json()
             
             result_items = content['items']
+
+            #additional preprocessing for the question and answering section
+            if section in ['questions','answers']:
+                for i in result_items:
+                    i['owner'] = i['owner']['user_id']
+
             write_to_csv(result_items, csv_output, pageCount)
 
             scrapeFlag = content['has_more']
