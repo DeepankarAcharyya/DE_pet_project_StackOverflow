@@ -23,7 +23,7 @@ default_args = {
 dag = DAG('Datapipeline_with_airflow_dag',
           default_args=default_args,
           description='Scrape and load data into Postgresql db with Airflow',
-          schedule_interval=timedelta(days=1),
+          schedule_interval='02 00 * * *',
           catchup = False
         )
 
